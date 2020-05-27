@@ -1,0 +1,530 @@
+openapi: 3.0.1
+info:
+  title: Payment Execution API
+  description: This page lists all the rest apis for Payment Execution.
+  contact:
+    name: Brillio Development Team
+    email: Arindam.Seal@mastercard.com
+  version: 1.0.0
+servers:
+  - url: //localhost:8085/zapp/p2p/
+    description: Generated server url
+tags:
+- name: payment-executions-api-controller
+  description: Payment Execution Controller   
+- name: transfer-eligibilities-api-controller
+  description: Transfer Eligibility Controller  
+paths:
+  /payment-executions:
+    post:
+      tags:
+      - payment-executions-api-controller
+      summary: Operation for Payment Execution request
+      operationId: PaymentsService
+      parameters:
+        - name: X-Participant-Id
+          in: header
+          description: X-Participant-Id of sender issued by mastercard
+          required: true
+          schema:
+            maxLength: 35
+            minLength: 0
+            type: string
+          example: "000012"
+        - name: X-Business-Message-Identifier
+          in: header
+          description: Sequence Number set by sending party
+          required: true
+          schema:
+            maxLength: 40
+            minLength: 0
+            type: string
+          example: "987530975"
+        - name: X-JWS-Signature
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Repeat-Flag
+          in: header
+          description: X-Repeat-Flag
+          required: false
+          schema:
+            type: boolean
+          example: false
+        - name: X-Encrypted
+          in: header
+          description: X-Encrypted
+          required: false
+          schema:
+            type: boolean
+          example: false
+      requestBody:
+        description: request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentsRequest'
+        required: true 
+      responses:
+        '200':
+          description: Successful response
+          headers:
+            X-Correlation-Id:
+              description: The Correlation ID
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentsResponse'
+        '400':
+          description: Bad request
+          headers:
+            X-Correlation-Id:
+              description: The Correlation ID
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '406':
+          description: Client Error
+          headers:
+            X-Correlation-Id:
+              description: The Correlation ID
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          headers:
+            X-Correlation-Id:
+              description: The Correlation ID
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      deprecated: false
+      x-codegen-request-body-name: request 
+  /transfer-eligibilities:
+    post:
+      tags:
+      - transfer-eligibilities-api-controller
+      summary: Operation for Transfer Eligibility request
+      operationId: transferEligibilityService
+      parameters:
+        - name: X-Participant-Id
+          in: header
+          description: X-Participant-Id of sender issued by mastercard
+          required: true
+          schema:
+            maxLength: 35
+            minLength: 0
+            type: string
+          example: "000012"
+        - name: X-Business-Message-Identifier
+          in: header
+          description: Sequence Number set by sending party
+          required: true
+          schema:
+            maxLength: 40
+            minLength: 0
+            type: string
+          example: "987530975"
+        - name: X-JWS-Signature
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Encrypted
+          in: header
+          description: X-Encrypted
+          required: false
+          schema:
+            type: boolean
+          example: false
+      requestBody:
+        description: request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferEligibilityRequest'
+        required: true 
+      responses:
+        '200':
+          description: Successful response
+          headers:
+            X-Correlation-Id:
+              description: The Correlation ID
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/McTransferEligibilityResponse'
+        '400':
+          description: Bad request
+          headers:
+            X-Correlation-Id:
+              description: The Correlation ID
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '406':
+          description: Client Error
+          headers:
+            X-Correlation-Id:
+              description: The Correlation ID
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          headers:
+            X-Correlation-Id:
+              description: The Correlation ID
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      deprecated: false
+      x-codegen-request-body-name: request
+components:
+  schemas:
+    McTransferEligibilityResponse:
+      required:
+        - receivingEligibility
+        - sendingEligibility
+        - transferEligibility
+      type: object
+      properties:
+        receivingEligibility:
+          $ref: '#/components/schemas/SendingReceivingEligibility'
+        sendingEligibility:
+          $ref: '#/components/schemas/SendingReceivingEligibility'
+        transferEligibility:
+          $ref: '#/components/schemas/TransferEligibility'
+    TransferEligibility:
+      required:
+        - TransferEligibility
+      type: object
+      properties:
+        TransferEligibility:
+          type: boolean
+          description: TransferEligibility
+    SendingReceivingEligibility:
+      required:
+        - accountStatementCurrency
+        - brand
+        - eligible
+        - enablementIndicator
+        - fundsAvailability
+        - institutionCountry
+        - institutionName
+        - processingType
+        - productType
+        - reasonCode
+        - reasonDescription
+        - type
+        - acceptanceBrand
+        - brandCode
+        - issuingICA
+        - crossBorder
+      type: object
+      properties:
+        accountStatementCurrency:
+          type: string
+          description: accountStatementCurrency
+        brand:
+          type: string
+          description: brand
+        eligible:
+          type: boolean
+          description: eligible
+        enablementIndicator:
+          type: string
+          description: enablementIndicator
+        fundsAvailability:
+          type: string
+          description: fundsAvailability
+        institutionCountry:
+          type: string
+          description: institutionCountry
+        institutionName:
+          type: string
+          description: institutionName
+        processingType:
+          type: string
+          description: processingType
+        productType:
+          type: string
+          description: productType
+        reasonCode:
+          type: string
+          description: reasonCode
+        reasonDescription:
+          type: string
+          description: reasonDescription
+        type:
+          type: string
+          description: type
+        acceptanceBrand:
+          type: string
+          description: acceptanceBrand
+        brandCode:
+          type: string
+          description: brandCode
+        issuingICA:
+          type: string
+          description: issuingICA
+        crossBorder:
+          type: string
+          description: crossBorder
+    TransferEligibilityRequest:
+      required:
+        - acquirerCountry
+        - recipientAccountUri
+        - transferAcceptorCountry
+      type: object
+      properties:
+          acquirerCountry:
+            type: string
+            description: acquirerCountry
+          recipientAccountUri:
+            type: string
+            description: recipientAccountUri
+          transferAcceptorCountry:
+            type: string
+            description: transferAcceptorCountry
+    PaymentsRequest:
+      required:
+        - paymentReference
+        - amount
+        - currency
+        - acquiringCredentials
+        - recipient
+        - fundingSource
+        - sender
+        - transactionLocalDateTime
+        - transferAcceptor
+      type: object
+      properties:
+        paymentReference:
+          type: string
+          description: paymentReference
+        amount:
+          type: string
+          description: amount
+        currency:
+          type: string
+          description: currency
+        acquiringCredentials:
+           $ref: '#/components/schemas/AcquiringCredentials'
+        recipient:
+          type: string
+          description: recipient
+        sender:
+          type: string
+          description: sender
+        fundingSource:
+          type: string
+          description: fundingSource
+        transactionLocalDateTime:
+          type: string
+          description: transactionLocalDateTime
+        transferAcceptor:
+          $ref: '#/components/schemas/TransferAcceptor'
+          
+    AcquiringCredentials:
+      required:
+        - acquiringIca
+        - dualMessage
+        - singleMessage
+      type: object
+      properties:
+        acquiringIca:
+          type: string
+          description: acquiringIca
+        dualMessage:
+          $ref: '#/components/schemas/DualMessage'
+        singleMessage:
+          $ref: '#/components/schemas/SingleMessage'
+    DualMessage:
+      required:
+        - acquiringBin
+      type: object
+      properties:
+        acquiringBin:
+          type: string
+          description: acquiringBin
+    SingleMessage:
+      required:
+        - acquiringIdentificationCode
+        - processorId
+      type: object
+      properties:
+        acquiringIdentificationCode:
+          type: string
+          description: acquiringIdentificationCode
+        processorId:
+          type: string
+          description: processorId
+    TransferAcceptor:
+      required:
+        - address
+        - id
+        - terminalId
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        id:
+          type: string
+          description: id
+        terminalId:
+          type: string
+          description: terminalId
+    Address:
+      required:
+        - country
+        - street
+      type: object
+      properties:
+        country:
+          type: string
+          description: country
+        street:
+          type: string
+          description: street
+    PaymentsResponse:
+      required:
+        - authorizationCode
+        - fundsAvailability
+        - messageTypeIndicator
+        - networkResponseCode
+        - paymentAccountReference
+        - paymentReference
+        - processingCode
+        - retrievalRequestNumber
+        - paymentId
+        - settlementAmount
+        - settlementCurrency
+        - switchSerialNumber
+        - systemTraceAuditNumber
+        - tokenRequestorId
+        - transactionStatus
+        - transactionStatusReason
+        - transmissionDateTime
+        - uniqueTransactionReference
+      type: object
+      properties:
+        authorizationCode:
+          type: string
+          description: authorizationCode
+        fundsAvailability:
+          type: string
+          description: fundsAvailability
+        messageTypeIndicator:
+          type: string
+          description: messageTypeIndicator
+        networkResponseCode:
+          type: string
+          description: networkResponseCode
+        paymentAccountReference:
+          type: string
+          description: paymentAccountReference
+        paymentReference:
+          type: string
+          description: paymentReference
+        processingCode:
+          type: string
+          description: processingCode
+        retrievalRequestNumber:
+          type: string
+          description: retrievalRequestNumber
+        paymentId:
+          type: string
+          description: paymentId
+        settlementAmount:
+          type: string
+          description: settlementAmount
+        settlementCurrency:
+          type: string
+          description: settlementCurrency
+        switchSerialNumber:
+          type: string
+          description: switchSerialNumber
+        systemTraceAuditNumber:
+          type: string
+          description: systemTraceAuditNumber
+        tokenRequestorId:
+          type: string
+          description: tokenRequestorId
+        transactionStatus:
+          type: string
+          description: transactionStatus
+        transactionStatusReason:
+          type: string
+          description: transactionStatusReason
+        transmissionDateTime:
+          type: string
+          description: transmissionDateTime
+        uniqueTransactionReference:
+          type: string
+          description: uniqueTransactionReference
+  
+    ErrorResponse:
+      type: object
+      required:
+      - errors
+      properties:
+        errors:
+          type: object
+          items:
+            $ref: '#/components/schemas/ErrorResponseErrors'
+    ErrorResponseErrors:
+      required:
+        - error
+      type: object
+      properties:
+        error:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorList'
+    ErrorList:
+      required:
+        - source
+        - reasonCode
+        - description
+        - recoverable
+      type: object
+      properties:
+        source:
+          type: string
+          description: source
+        reasonCode:
+          type: string
+          description: reasonCode
+        description:
+          type: string
+          description: description
+        recoverable:
+          type: string
+          description: recoverable
+          default: false
+      
