@@ -1,0 +1,26 @@
+server:
+    port: {{ ap_p2p_sm_payment_execution.server.port }}
+    servlet:
+        context-path: /
+
+springfox:
+    documentation:
+        swagger:
+            v2:
+                path: /api-docs
+management:
+    endpoint:
+        info:
+            enabled: true
+
+storeVCNDataLocally: true
+
+card:
+    type: virtual
+ap:
+    p2p:
+        sm:
+        	payment:
+        			execution:
+						       switch: true
+						       cpnType: PBAEF

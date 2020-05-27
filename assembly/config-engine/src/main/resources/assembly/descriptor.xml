@@ -1,0 +1,37 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	<id>ap-p2p-sm-payment-execution-config</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/resources/template</directory>
+			<outputDirectory>./template</outputDirectory>
+			<filtered>true</filtered>
+			<includes>
+				<include>*.j2</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/properties</directory>
+			<outputDirectory>./properties</outputDirectory>
+			<filtered>true</filtered>
+			<includes>
+				<include>*.properties</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources/scripts</directory>
+			<outputDirectory>./scripts</outputDirectory>
+			<filtered>true</filtered>
+			<includes>
+				<include>*.sh</include>
+				<include>*.bat</include>
+			</includes>
+		</fileSet>		
+	</fileSets>	
+</assembly>
