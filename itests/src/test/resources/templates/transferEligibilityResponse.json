@@ -1,0 +1,31 @@
+{
+  "receivingEligibility": {
+    "brand": "MASTERCARD",
+    "eligible": true,
+    "enablementIndicator": "Y",
+    "fundsAvailability": "IMMEDIATE",
+    "institutionCountry": "USA",
+    "institutionName": "Test Bank ABC",
+    "productType": "CONSUMER",
+    "type": "DEBIT",
+    "acceptanceBrand": "DMC",
+    "brandCode": "MDG",
+    "issuingICA": "999001",
+    "crossBorder": true
+  },
+  "sendingEligibility": {
+    "accountStatementCurrency": "USD",
+    "brand": "MASTERCARD",
+    "eligible": true,
+    "enablementIndicator": "D",
+    "institutionCountry": "USA",
+    "institutionName": "Test Bank ABC",
+    "productType": "CONSUMER",
+    "type": "DEBIT",
+    "acceptanceBrand": "DMC",
+    "brandCode": "MDG",
+    "issuingICA": "999001",
+    "crossBorder": true
+  },
+  "transferEligibility": {}
+}

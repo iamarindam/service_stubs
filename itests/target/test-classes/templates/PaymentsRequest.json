@@ -1,0 +1,74 @@
+{
+  "paymentReference": "951234001",
+  "amount": "6000",
+  "currency": "USD",
+  "acquiringCredentials": {
+    "acquiringCountry": "USA",
+    "acquiringIca": "12345678911",
+    "dualMessage": {
+      "acquiringBin": "512340"
+    },
+    "singleMessage": {
+      "acquiringIdentificationCode": "123456780",
+      "processorId": "9000001957"
+    }
+  },
+  "deviceType": "WEB",
+  "fundingSource": "CREDIT",
+  "participationId": "1234567890",
+  "transferAcceptor": {
+    "address": {
+      "city": "ofallon",
+      "country": "USA",
+      "postalCode": "23233",
+      "state": "MO",
+      "street": "2200 Mastercard Blvd"
+    },
+    "convenienceAmount": "333",
+    "convenienceIndicator": "01",
+    "id": "456487898368",
+    "mastercardAssignedMerchantId": "12A346",
+    "name": "transferacceptor",
+    "paymentFacilitatorId": "123",
+    "subMerchantId": "223",
+    "terminalId": "1367-hgf"
+  },
+  "recipient": {
+    "accountUri": "pan:4024140000000065;exp=2050-02;cvc=123",
+    "address": {
+      "city": "ofallon",
+      "country": "USA",
+      "postalCode": "23233",
+      "state": "MO",
+      "street": "2200 Mastercard Blvd"
+    },
+    "countryOfBirth": "USA",
+    "dateOfBirth": "1981-03-27",
+    "email": "jane.doe@mastercard.com",
+
+    "name": "Smith John ",
+    "nationality": "USA",
+    "phone": "1234567890"
+  },
+  "sender": {
+    "accountUri": "pan:4024140000000065;exp=2050-02;cvc=123",
+    "address": {
+      "city": "ofallon",
+      "country": "USA",
+      "postalCode": "23233",
+      "state": "MO",
+      "street": "2200 Mastercard Blvd"
+    },
+    "countryOfBirth": "USA",
+    "dateOfBirth": "1981-12-30",
+
+    "email": "jane.doe@mastercard.com",
+
+    "name": "Smith Jane ",
+    "nationality": "USA",
+    "phone": "1234567890"
+  },
+  "transactionLocalDateTime": "2019-12-30T23:09:09Z",
+  "transactionPurpose": "07",
+  "uniqueTransactionReference": "0555555901215305401"
+}

@@ -1,0 +1,12 @@
+{
+  "Errors": {
+    "Error": [
+      {
+        "source": "ZAPP",
+        "reasonCode": "STVL-9999",
+        "description": "Incorrect Format",
+        "recoverable": false
+      }
+    ]
+  }
+}
