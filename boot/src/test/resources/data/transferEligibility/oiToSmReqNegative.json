@@ -1,0 +1,8 @@
+{
+  "acquirerCountry": "USA",
+  "amount": "10000",
+  "currency": "USD",
+  "recipientAccountUri": "951234002",
+  "senderAccountUri": "5102589999999905",
+  "transferAcceptorCountry": "USA"
+}

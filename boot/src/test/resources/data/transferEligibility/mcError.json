@@ -1,0 +1,14 @@
+{
+  "Errors": {
+    "Error": [
+      {
+        "Source": "Gateway",
+        "ReasonCode": "AUTHORIZATION_FAILED",
+        "Description": "Transaction processing suspended",
+        "Recoverable": false,
+        "RequestId": "rqst_RGW8-0Q55-1C3O-K63L",
+        "ErrorDetailCode": "50005"
+      }
+    ]
+  }
+}

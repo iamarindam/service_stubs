@@ -1,0 +1,12 @@
+{
+  "Errors": {
+    "Error": [
+      {
+        "source": "ZAPP",
+        "reasonCode": "TECH-9999",
+        "description": "Technical Issues Encountered",
+        "recoverable": false
+      }
+    ]
+  }
+}

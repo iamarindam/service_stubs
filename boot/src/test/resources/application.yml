@@ -1,0 +1,43 @@
+send:
+    enable:
+        signing: true
+    error:
+        alert:
+            operationname: submitPayment
+            productidentifier: P2P
+            servicename: P2PSMPaymentExecutionService
+    merchantCategoryCode: 6536
+    partnerId: 12345
+    paymentType: P2P
+    payments:
+        encryption:
+            enabled: false
+        repeat:
+            flag:
+                enabled: false
+        url: http://localhost:25043/send/partners/{partner_id}/payments?repeat_flag={repeatFlag}
+    sandbox:
+        consumerkey: 8qoFNpN4qMiy0jKXScZ1yuSlmMWnPCIhx5KglNUPd652e7d4!368e82a6299d4738bf4f8132dc0b029f0000000000000000
+        privatekey: ?D:\sandbox\ServiceManagerZapp-sandbox.p12
+    signing:
+        generation:
+            path: http://snv-sprintst3.test.vocalink.co.uk:8082/zapp/security/jose/signature-generations
+        verification:
+            path: http://snv-sprintst3.test.vocalink.co.uk:8082/zapp/security/jose/signature-verifications
+    test:
+        signing:
+            generation:
+                path: http://snv-sprintst3.test.vocalink.co.uk:8082/zapp-test/security/jose/signature-generations
+            verification:
+                path: http://snv-sprintst3.test.vocalink.co.uk:8082/zapp-test/security/jose/signature-verifications
+    timeout: 4000
+    validation:
+        source: ZAPP
+server:
+    port: 25033
+spring:
+    main:
+        allow-bean-definition-overriding: true
+transfer:
+    eligibility:
+        url: http://localhost:25043/send/partners/{partner_id}/transfer-eligibility

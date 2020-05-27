@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration>
+    <!-- Appenders -->
+    <!-- Console Appender -->
+    <Appenders>
+        <Console name="console">
+            <PatternLayout>
+                <pattern>%cm %n</pattern>
+            </PatternLayout>
+        </Console>
+        <RollingRandomAccessFile name="json-logging" fileName="./logs/McSendServiceManagerLog.json"
+                     filePattern="./logs/McSendServiceManagerLog-%d{yyyy-MM-dd}-%i.json">
+             <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>   
+            <PatternLayout pattern="%cm %n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="metrics-output" fileName="./logs/McSendServiceManagerLog.json"
+                     filePattern="./logs/McSendServiceManagerLog-%d{yyyy-MM-dd}-%i.json">
+              <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/> 
+            <PatternLayout pattern="%cm %n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="perf-output" fileName="./logs/McSendServiceManagerLog.json"
+                     filePattern="./logs/McSendServiceManagerLog-%d{yyyy-MM-dd}-%i.json">
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%cm %n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="25MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <!-- 3rdparty Loggers -->
+        <logger name="org.springframework.core">
+            <level value="error"/>
+        </logger>
+        <logger name="org.springframework.beans">
+            <level value="error"/>
+        </logger>
+        <logger name="org.springframework.context">
+            <level value="error"/>
+        </logger>
+        <logger name="org.springframework.web">
+            <level value="error"/>
+        </logger>
+        <logger name="org.springframework.security">
+            <level value="error"/>
+        </logger>
+        <logger name="org.springframework.orm">
+            <level value="error"/>
+        </logger>
+        <logger name="org.hibernate">
+            <level value="error"/>
+        </logger>
+        <logger name="org.hibernate.SQL">
+            <level value="error"/>
+        </logger>
+        <logger name="org.hibernate.type">
+            <level value="error"/>
+        </logger>
+        <!-- If set to debug, shows currently registered interceptors and handleMessage() invocation logs -->
+        <logger name="org.apache.cxf.phase">
+            <level value="error"/>
+        </logger>
+
+        <!-- Un-comment the lines below for additional SQL information -->
+        <logger name="org.springframework.jdbc.core">
+            <level value="error"/>
+        </logger>
+
+        <logger name="org.springframework.jdbc.core.StatementCreatorUtils">
+            <level value="error"/>
+        </logger>
+
+<!-- create new logger name = package name,  -->
+
+		<!--  <logger name="com.mastercard.pymc.controller" additivity="false">
+            <level value="debug"/>
+            <AppenderRef ref="metrics-output"/>
+        </logger> --> 
+        
+        <logger name="EMS" additivity="false">
+            <level value="error"/>
+            <AppenderRef ref="console"/>
+        </logger>
+        <logger name="METRICS" additivity="false">
+            <level value="debug"/>
+            <AppenderRef ref="metrics-output"/>
+        </logger>
+        <logger name="ASPECTMETRICS" additivity="false">
+            <AppenderRef ref="perf-output" level="info" />
+        </logger>
+
+        <!-- Root Logger -->
+        <Root level="debug">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="json-logging"/>
+            <AppenderRef ref="metrics-output"/> 
+           <!--   <AppenderRef ref="metrics-output" level="debug" /> -->
+            <!-- <appender-ref ref="alert" /> -->
+        </Root>
+    </Loggers>
+</configuration>

@@ -1,0 +1,20 @@
+{
+    "authorizationCode": "058716",
+    "fundsAvailability": "IMMEDIATE",
+    "messageTypeIndicator": "1",
+    "networkResponseCode": "00",
+    "paymentAccountReference": "y88xipweht",
+    "paymentReference": "123456789117",
+    "processingCode": "08",
+    "retrievalRequestNumber": "870670700178743113138518",
+    "paymentId": "442480160",
+    "settlementAmount": "6000",
+    "settlementCurrency": "USD",
+    "switchSerialNumber": "767706762",
+    "systemTraceAuditNumber": "050561",
+    "tokenRequestorId": "ABC123456",
+    "transactionStatus": "APPROVED",
+    "transactionStatusReason": "APPROVED",
+    "transmissionDateTime": "2019-12-08T12:36:50Z",
+    "uniqueTransactionReference": "3111545077352141841"
+}
